@@ -142,7 +142,7 @@ export default function Signup() {
                                     name="username"
                                     value={formData.username}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors"
                                     placeholder="Enter your username"
                                     required
                                 />
@@ -158,7 +158,7 @@ export default function Signup() {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors"
                                     placeholder="Enter your email"
                                     required
                                 />
@@ -169,7 +169,7 @@ export default function Signup() {
                                     I am a
                                 </label>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <label className={`relative flex cursor-pointer flex-col rounded-lg border-2 p-4 text-center focus:outline-none ${formData.role === 'learner' ? 'border-yellow-400 bg-yellow-50' : 'border-gray-200'}`}>
+                                    <label className={`relative flex cursor-pointer flex-col rounded-lg border-2 p-4 text-center focus:outline-none ${formData.role === 'learner' ? 'border-blue-400 bg-blue-50' : 'border-gray-200'}`}>
                                         <input
                                             type="radio"
                                             name="role"
@@ -182,7 +182,7 @@ export default function Signup() {
                                         <span className="text-xs text-gray-500 mt-1">I want to learn</span>
                                     </label>
 
-                                    <label className={`relative flex cursor-pointer flex-col rounded-lg border-2 p-4 text-center focus:outline-none ${formData.role === 'teacher' ? 'border-yellow-400 bg-yellow-50' : 'border-gray-200'}`}>
+                                    <label className={`relative flex cursor-pointer flex-col rounded-lg border-2 p-4 text-center focus:outline-none ${formData.role === 'teacher' ? 'border-blue-400 bg-blue-50' : 'border-gray-200'}`}>
                                         <input
                                             type="radio"
                                             name="role"
@@ -207,7 +207,7 @@ export default function Signup() {
                                     name="password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors"
                                     placeholder="Enter your password"
                                     required
                                 />
@@ -224,7 +224,7 @@ export default function Signup() {
                                     name="confirmPassword"
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors"
                                     placeholder="Confirm your password"
                                     required
                                 />
@@ -233,7 +233,7 @@ export default function Signup() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full bg-linear-to-r from-yellow-400 to-yellow-500 text-black font-bold py-3 px-4 rounded-lg hover:scale-105 transition-transform shadow-lg shadow-yellow-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full bg-linear-to-r from-blue-400 to-blue-500 text-black font-bold py-3 px-4 rounded-lg hover:scale-105 transition-transform shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Creating Account...' : 'Sign Up'}
                             </button>
@@ -242,7 +242,7 @@ export default function Signup() {
                         <div className="text-center mt-6">
                             <p className="text-gray-600">
                                 Already have an account?{' '}
-                                <Link to="/auth/login" className="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">
+                                <Link to="/auth/login" className="text-blue-500 font-semibold hover:text-blue-600 transition-colors">
                                     Sign in
                                 </Link>
                             </p>

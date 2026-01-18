@@ -14,7 +14,11 @@ export default function Footer() {
                         <h4 className="font-bold text-black mb-4">Quick Links</h4>
                         <div className="space-y-2">
                             {['Features', 'Pricing', 'Contact', 'Privacy Policy'].map((link) => (
-                                <a key={link} href="#" className="block text-black/60 hover:text-yellow-400 transition-colors">
+                                <a
+                                    key={link}
+                                    href="#"
+                                    className="block text-black/60 hover:text-blue-600 transition-colors"
+                                >
                                     {link}
                                 </a>
                             ))}

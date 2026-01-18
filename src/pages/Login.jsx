@@ -109,7 +109,7 @@ export default function Login() {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors"
                                     placeholder="Enter your email"
                                     required
                                 />
@@ -125,7 +125,7 @@ export default function Login() {
                                     name="password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-colors"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors"
                                     placeholder="Enter your password"
                                     required
                                 />
@@ -134,7 +134,7 @@ export default function Login() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full bg-linear-to-r from-yellow-400 to-yellow-500 text-black font-bold py-3 px-4 rounded-lg hover:scale-105 transition-transform shadow-lg shadow-yellow-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full bg-linear-to-r from-blue-400 to-blue-500 text-black font-bold py-3 px-4 rounded-lg hover:scale-105 transition-transform shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Signing In...' : 'Sign In'}
                             </button>
@@ -143,7 +143,7 @@ export default function Login() {
                         <div className="text-center mt-6">
                             <p className="text-gray-600">
                                 Don't have an account?{' '}
-                                <Link to="/auth/signup" className="text-yellow-500 font-semibold hover:text-yellow-600 transition-colors">
+                                <Link to="/auth/signup" className="text-blue-500 font-semibold hover:text-blue-600 transition-colors">
                                     Sign up
                                 </Link>
                             </p>

@@ -56,9 +56,9 @@ const Landing = () => {
             <Header />
             <div className="min-h-screen text-black bg-white">
                 <section className="relative py-32 overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-yellow-400/5 via-black to-black"></div>
-                    <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-yellow-400/10 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-yellow-400/5 rounded-full blur-3xl"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-blue-400/5 via-black to-black"></div>
+                    <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-blue-400/5 rounded-full blur-3xl"></div>
 
                     <div className="container mx-auto px-6 relative z-10">
                         <div className="max-w-6xl mx-auto text-center">
@@ -68,7 +68,7 @@ const Landing = () => {
                                         <span className="block text-gray-900">
                                             Talent Nearby
                                         </span>
-                                        <span className="block bg-linear-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
+                                        <span className="block bg-linear-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
                                             Right Beside You.
                                         </span>
                                     </h1>
@@ -88,7 +88,7 @@ const Landing = () => {
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
                                 <button
                                     onClick={() => navigate('/auth/signup')}
-                                    className="bg-linear-to-r from-yellow-400 to-yellow-500 text-black px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-yellow-500/25 flex items-center gap-2 cursor-pointer"
+                                    className="bg-linear-to-r from-blue-400 to-blue-500 text-black px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-blue-500/25 flex items-center gap-2 cursor-pointer"
                                 >
                                     Get Started
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,7 +135,7 @@ const Landing = () => {
 
                         <div className="max-w-6xl mx-auto">
                             <div className="relative">
-                                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-linear-to-r from-yellow-400 to-yellow-500 transform -translate-y-1/2 hidden lg:block"></div>
+                                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-linear-to-r from-blue-400 to-blue-500 transform -translate-y-1/2 hidden lg:block"></div>
 
                                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-4">
                                     {[
@@ -169,11 +169,11 @@ const Landing = () => {
                                         }
                                     ].map((step, index) => (
                                         <div key={index} className="relative">
-                                            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center text-black text-sm font-bold z-10">
+                                            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center text-black text-sm font-bold z-10">
                                                 {step.step}
                                             </div>
 
-                                            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 group hover:border-yellow-300">
+                                            <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 group hover:border-blue-300">
                                                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                                                     <step.icon className="w-7 h-7" />
                                                 </div>
@@ -186,7 +186,7 @@ const Landing = () => {
                                                 <ul className="space-y-2">
                                                     {step.features.map((feature, featureIndex) => (
                                                         <li key={featureIndex} className="flex items-center text-sm text-gray-500">
-                                                            <svg className="w-4 h-4 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                            <svg className="w-4 h-4 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                             </svg>
                                                             {feature}
@@ -209,7 +209,7 @@ const Landing = () => {
                                 <div>
                                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                                         Your Neighborhood's<br />
-                                        <span className="bg-linear-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
+                                        <span className="bg-linear-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
                                             Social Learning Hub
                                         </span>
                                     </h2>
@@ -256,7 +256,7 @@ const Landing = () => {
                                 <div className="relative">
                                     <div className="bg-white rounded-2xl border border-gray-200 shadow-xl p-6 transform transition-transform duration-300">
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-12 h-12 bg-linear-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
+                                            <div className="w-12 h-12 bg-linear-to-r from-blue-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold">
                                                 DP
                                             </div>
                                             <div>
@@ -271,17 +271,17 @@ const Landing = () => {
                                                 So proud of our local talent!
                                             </p>
                                             <div className="flex gap-2 mb-3">
-                                                <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">#GuitarLessons</span>
+                                                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">#GuitarLessons</span>
                                                 <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">#LocalTalent</span>
                                             </div>
                                         </div>
 
                                         <div className="flex items-center justify-between text-sm text-gray-500 border-t border-gray-100 pt-3">
                                             <div className="flex items-center gap-4">
-                                                <button className="flex items-center gap-1 hover:text-yellow-500">
+                                                <button className="flex items-center gap-1 hover:text-blue-500">
                                                     ❤️ 12 likes
                                                 </button>
-                                                <button className="flex items-center gap-1 hover:text-yellow-500">
+                                                <button className="flex items-center gap-1 hover:text-blue-500">
                                                     💬 3 comments
                                                 </button>
                                             </div>
@@ -290,7 +290,7 @@ const Landing = () => {
                                     </div>
                                     <div className="bg-white rounded-2xl border border-gray-200 shadow-xl p-6 transform transition-transform duration-300 mt-4">
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-12 h-12 bg-linear-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">
+                                            <div className="w-12 h-12 bg-linear-to-r from-blue-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold">
                                                 SJR
                                             </div>
                                             <div>
@@ -304,17 +304,17 @@ const Landing = () => {
                                                 Looking for guitar classes in the area! Any recommendations? 👩‍🍳
                                             </p>
                                             <div className="flex gap-2 mb-3">
-                                                <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">#GuitarLessons</span>
+                                                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">#GuitarLessons</span>
                                                 <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">#LocalTalent</span>
                                             </div>
                                         </div>
 
                                         <div className="flex items-center justify-between text-sm text-gray-500 border-t border-gray-100 pt-3">
                                             <div className="flex items-center gap-4">
-                                                <button className="flex items-center gap-1 hover:text-yellow-500">
+                                                <button className="flex items-center gap-1 hover:text-blue-500">
                                                     ❤️ 12 likes
                                                 </button>
-                                                <button className="flex items-center gap-1 hover:text-yellow-500">
+                                                <button className="flex items-center gap-1 hover:text-blue-500">
                                                     💬 3 comments
                                                 </button>
                                             </div>
@@ -334,7 +334,7 @@ const Landing = () => {
                                 Transparent Pricing
                             </h2>
                             <p className="text-4xl font-bold md:text-5xl text-gray-600 max-w-2xl mx-auto">
-                                <span className='bg-linear-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent'>
+                                <span className='bg-linear-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent'>
                                     that works best for you
                                 </span>
                             </p>
@@ -374,7 +374,7 @@ const Landing = () => {
                                             "Priority listing in local results"
                                         ],
                                         cta: "Start Sharing",
-                                        color: "yellow"
+                                        color: "blue"
                                     },
                                     {
                                         name: "Community Plus",
@@ -395,18 +395,18 @@ const Landing = () => {
                                     }
                                 ].map((plan, index) => (
                                     <div key={index} className={`relative rounded-2xl border-2 transition-all duration-300 ${plan.popular
-                                        ? 'border-yellow-400 bg-white shadow-xl'
+                                        ? 'border-blue-400 bg-white shadow-xl'
                                         : 'border-gray-200 bg-white shadow-sm'
                                         }`}>
                                         {plan.popular && (
-                                            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold">
+                                            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-400 text-black px-4 py-1 rounded-full text-sm font-bold">
                                                 Most Popular
                                             </div>
                                         )}
 
                                         <div className="p-8">
                                             <div className="text-center mb-6">
-                                                <h3 className={`text-2xl font-bold ${plan.color === 'yellow' ? 'text-yellow-600' :
+                                                <h3 className={`text-2xl font-bold ${plan.color === 'blue' ? 'text-blue-600' :
                                                     plan.color === 'black' ? 'text-gray-900' : 'text-gray-700'
                                                     }`}>
                                                     {plan.name}
@@ -440,7 +440,7 @@ const Landing = () => {
                                             </ul>
 
                                             <button className={`w-full py-3 px-6 rounded-lg cursor-pointer font-bold transition-all ${plan.popular
-                                                ? 'bg-linear-to-r from-yellow-400 to-yellow-500 text-black hover:shadow-lg'
+                                                ? 'bg-linear-to-r from-blue-400 to-blue-500 text-black hover:shadow-lg'
                                                 : plan.color === 'black'
                                                     ? 'bg-gray-900 text-white hover:bg-gray-800'
                                                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -456,10 +456,10 @@ const Landing = () => {
                 </section>
 
                 <section className="my-20">
-                    <div className="bg-linear-to-r from-yellow-400/10 to-yellow-500/10 rounded-2xl p-18 border border-yellow-400/20 max-w-6xl mx-auto">
+                    <div className="bg-linear-to-r from-blue-400/10 to-blue-500/10 rounded-2xl p-18 border border-blue-400/20 max-w-6xl mx-auto">
                         <h2 className="text-3xl md:text-6xl font-bold text-center">
                             Start Connecting, Start Learning<br />
-                            <span className="bg-linear-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
+                            <span className="bg-linear-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
                                 All Within Your Neighborhood.
                             </span>
                         </h2>

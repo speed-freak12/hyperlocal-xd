@@ -75,7 +75,7 @@ export default function Header() {
                                 </Link>
                                 <Link
                                     to="/auth/signup"
-                                    className="bg-linear-to-r from-yellow-400 to-yellow-500 text-black px-6 py-2 rounded-full font-medium hover:scale-105 transition-transform"
+                                    className="bg-linear-to-r from-blue-400 to-blue-500 text-black px-6 py-2 rounded-full font-medium hover:scale-105 transition-transform"
                                 >
                                     Signup
                                 </Link>
@@ -118,7 +118,7 @@ export default function Header() {
                                         Dashboard
                                     </Link>
                                     <div className="flex items-center gap-2 py-2">
-                                        <div className="w-8 h-8 bg-linear-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white text-sm">
+                                        <div className="w-8 h-8 bg-linear-to-r from-blue-400 to-blue-500 rounded-full flex items-center justify-center text-white text-sm">
                                             {user.username?.charAt(0).toUpperCase()}
                                         </div>
                                         <span className="text-black/80">
@@ -137,7 +137,7 @@ export default function Header() {
                                     </Link>
                                     <Link
                                         to="/auth/signup"
-                                        className="block bg-linear-to-r from-yellow-400 to-yellow-500 text-black px-6 py-2 rounded-full font-medium text-center hover:scale-105 transition-transform"
+                                        className="block bg-linear-to-r from-blue-400 to-blue-500 text-black px-6 py-2 rounded-full font-medium text-center hover:scale-105 transition-transform"
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         Signup
