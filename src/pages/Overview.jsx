@@ -113,7 +113,7 @@ export default function Overview() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Link
           to="/dashboard/discover"
-          className="bg-linear-to-r from-yellow-400 to-yellow-500 rounded-xl p-6 text-white cursor-pointer block"
+          className="bg-linear-to-r from-blue-400 to-blue-500 rounded-xl p-6 text-white cursor-pointer block"
         >
           <h3 className="text-xl font-bold mb-2">Find People</h3>
           <p className="mb-4 opacity-90">Discover and connect with learners and teachers</p>
@@ -128,7 +128,7 @@ export default function Overview() {
         >
           <h3 className="text-xl font-bold mb-2">Your Messages</h3>
           <p className="mb-4 opacity-90">Continue your conversations</p>
-          <div className="bg-yellow-400 text-black px-6 py-2 rounded-lg font-medium hover:bg-yellow-500 transition-colors inline-block">
+          <div className="bg-black-400 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800 transition-colors inline-block">
             View Messages
           </div>
         </Link>

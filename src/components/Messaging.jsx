@@ -195,7 +195,7 @@ export default function Messaging() {
                         <div
                             key={chat.id}
                             onClick={() => handleChatSelect(chat.id)}
-                            className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${selectedChat === chat.id ? 'bg-yellow-50 border-l-4 border-l-yellow-400' : ''
+                            className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${selectedChat === chat.id ? 'bg-blue-50 border-l-4 border-l-blue-400' : ''
                                 }`}
                         >
                             <div className="flex items-center gap-3">
@@ -300,7 +300,7 @@ export default function Messaging() {
                                     >
                                         <div
                                             className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${message.sender === currentUser.uid
-                                                ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded-br-none'
+                                                ? 'bg-gradient-to-r from-blue-400 to-blue-500 text-black rounded-br-none'
                                                 : 'bg-white text-gray-900 border border-gray-200 rounded-bl-none'
                                                 } shadow-sm`}
                                         >
@@ -324,13 +324,13 @@ export default function Messaging() {
                                     value={newMessage}
                                     onChange={(e) => setNewMessage(e.target.value)}
                                     placeholder="Type a message..."
-                                    className="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 focus:outline-none"
+                                    className="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-400 focus:border-blue-400 focus:outline-none"
                                     onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                                 />
                                 <button
                                     onClick={sendMessage}
                                     disabled={!newMessage.trim()}
-                                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-6 py-3 rounded-full font-medium hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                                    className="bg-gradient-to-r from-blue-400 to-blue-500 text-black px-6 py-3 rounded-full font-medium hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                                 >
                                     <span>Send</span>
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

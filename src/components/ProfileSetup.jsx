@@ -229,7 +229,7 @@ export default function ProfileSetup() {
                             key={tab.id}
                             onClick={() => setActiveSection(tab.id)}
                             className={`flex items-center gap-2 px-6 py-4 border-b-2 font-medium whitespace-nowrap ${activeSection === tab.id
-                                ? 'border-yellow-400 text-yellow-600 bg-yellow-50'
+                                ? 'border-blue-400 text-blue-600 bg-blue-50'
                                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                                 }`}
                         >
@@ -253,7 +253,7 @@ export default function ProfileSetup() {
                                     type="text"
                                     value={profileData.name}
                                     onChange={(e) => handleInputChange(null, 'name', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                     placeholder="Enter your full name"
                                 />
                             </div>
@@ -266,7 +266,7 @@ export default function ProfileSetup() {
                                     type="tel"
                                     value={profileData.phone}
                                     onChange={(e) => handleInputChange(null, 'phone', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                     placeholder="+91 1234567890"
                                 />
                             </div>
@@ -279,7 +279,7 @@ export default function ProfileSetup() {
                                     type="text"
                                     value={profileData.location}
                                     onChange={(e) => handleInputChange(null, 'location', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                     placeholder="Enter your full name"
                                 />
                             </div>
@@ -306,7 +306,7 @@ export default function ProfileSetup() {
                                     value={profileData.bio}
                                     onChange={(e) => handleInputChange(null, 'bio', e.target.value)}
                                     rows="4"
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 resize-none"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400 resize-none"
                                     placeholder="Tell people about yourself, your experience, and what you can offer..."
                                 />
                                 <p className="text-sm text-gray-500 mt-1">
@@ -332,7 +332,7 @@ export default function ProfileSetup() {
                                         value={newSkill}
                                         onChange={(e) => setNewSkill(e.target.value)}
                                         placeholder="Add a skill (e.g., React.js, Guitar, Cooking)"
-                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                         onKeyPress={(e) => e.key === 'Enter' && handleArrayUpdate('skills', newSkill, 'add').then(() => setNewSkill(''))}
                                     />
                                     <button
@@ -340,7 +340,7 @@ export default function ProfileSetup() {
                                             handleArrayUpdate('skills', newSkill, 'add');
                                             setNewSkill('');
                                         }}
-                                        className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-medium hover:bg-yellow-500 transition-colors"
+                                        className="bg-blue-400 text-black px-4 py-2 rounded-lg font-medium hover:bg-blue-500 transition-colors"
                                     >
                                         Add
                                     </button>
@@ -349,12 +349,12 @@ export default function ProfileSetup() {
                                     {profileData.skills.map((skill, index) => (
                                         <div
                                             key={index}
-                                            className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm flex items-center gap-2"
+                                            className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm flex items-center gap-2"
                                         >
                                             {skill}
                                             <button
                                                 onClick={() => handleArrayUpdate('skills', skill, 'remove')}
-                                                className="text-yellow-600 hover:text-yellow-800"
+                                                className="text-blue-600 hover:text-blue-800"
                                             >
                                                 ×
                                             </button>
@@ -370,7 +370,7 @@ export default function ProfileSetup() {
                                 <select
                                     value={profileData.expertiseLevel}
                                     onChange={(e) => handleInputChange(null, 'expertiseLevel', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                 >
                                     <option value="beginner">Beginner</option>
                                     <option value="intermediate">Intermediate</option>
@@ -389,7 +389,7 @@ export default function ProfileSetup() {
                                         value={newLanguage}
                                         onChange={(e) => setNewLanguage(e.target.value)}
                                         placeholder="Add a language you speak"
-                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                         onKeyPress={(e) => e.key === 'Enter' && handleArrayUpdate('languages', newLanguage, 'add').then(() => setNewLanguage(''))}
                                     />
                                     <button
@@ -397,7 +397,7 @@ export default function ProfileSetup() {
                                             handleArrayUpdate('languages', newLanguage, 'add');
                                             setNewLanguage('');
                                         }}
-                                        className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-medium hover:bg-yellow-500 transition-colors"
+                                        className="bg-blue-400 text-black px-4 py-2 rounded-lg font-medium hover:bg-blue-500 transition-colors"
                                     >
                                         Add
                                     </button>
@@ -435,7 +435,7 @@ export default function ProfileSetup() {
                                 <select
                                     value={profileData.timezone}
                                     onChange={(e) => handleInputChange(null, 'timezone', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                 >
                                     <option value="IST">Indian Standard Time (IST)</option>
                                     <option value="PST">Pacific Standard Time (PST)</option>
@@ -451,7 +451,7 @@ export default function ProfileSetup() {
                                 <select
                                     value={profileData.preferredSessionDuration}
                                     onChange={(e) => handleInputChange(null, 'preferredSessionDuration', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                 >
                                     <option value="30">30 minutes</option>
                                     <option value="60">1 hour</option>
@@ -470,7 +470,7 @@ export default function ProfileSetup() {
                                             type="checkbox"
                                             checked={data.available}
                                             onChange={(e) => handleAvailabilityChange(day, 'available', e.target.checked)}
-                                            className="w-4 h-4 text-yellow-400 rounded focus:ring-yellow-400"
+                                            className="w-4 h-4 text-blue-400 rounded focus:ring-blue-400"
                                         />
                                         <label className="font-medium capitalize">{day}</label>
                                     </div>
@@ -480,7 +480,7 @@ export default function ProfileSetup() {
                                             <div className="flex gap-2 mb-2">
                                                 <input
                                                     type="time"
-                                                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                                     onBlur={(e) => e.target.value && addTimeSlot(day, e.target.value)}
                                                     placeholder="Add time slot"
                                                 />
@@ -521,7 +521,7 @@ export default function ProfileSetup() {
                                 <select
                                     value={profileData.pricing.rateType}
                                     onChange={(e) => handleInputChange('pricing', 'rateType', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                 >
                                     <option value="hourly">Per Hour</option>
                                     <option value="per_session">Per Session</option>
@@ -536,7 +536,7 @@ export default function ProfileSetup() {
                                 <select
                                     value={profileData.pricing.currency}
                                     onChange={(e) => handleInputChange('pricing', 'currency', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                 >
                                     <option value="INR">Indian Rupee (₹)</option>
                                     <option value="USD">US Dollar ($)</option>
@@ -552,7 +552,7 @@ export default function ProfileSetup() {
                                     type="number"
                                     value={profileData.pricing.rate}
                                     onChange={(e) => handleInputChange('pricing', 'rate', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                     placeholder="0.00"
                                 />
                             </div>
@@ -562,7 +562,7 @@ export default function ProfileSetup() {
                                     type="checkbox"
                                     checked={profileData.pricing.freeInitialConsultation}
                                     onChange={(e) => handleInputChange('pricing', 'freeInitialConsultation', e.target.checked)}
-                                    className="w-4 h-4 text-yellow-400 rounded focus:ring-yellow-400"
+                                    className="w-4 h-4 text-blue-400 rounded focus:ring-blue-400"
                                 />
                                 <label className="ml-2 text-sm font-medium text-gray-700">
                                     Offer free initial consultation
@@ -576,13 +576,13 @@ export default function ProfileSetup() {
                                 <input
                                     type="number"
                                     placeholder="Number of sessions"
-                                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                     id="packageSessions"
                                 />
                                 <input
                                     type="number"
                                     placeholder="Total price"
-                                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                     id="packagePrice"
                                 />
                                 <button
@@ -595,7 +595,7 @@ export default function ProfileSetup() {
                                             document.getElementById('packagePrice').value = '';
                                         }
                                     }}
-                                    className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-medium hover:bg-yellow-500 transition-colors"
+                                    className="bg-blue-400 text-black px-4 py-2 rounded-lg font-medium hover:bg-blue-500 transition-colors"
                                 >
                                     Add Package
                                 </button>
@@ -638,7 +638,7 @@ export default function ProfileSetup() {
                                 <select
                                     value={profileData.teachingStyle}
                                     onChange={(e) => handleInputChange(null, 'teachingStyle', e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                 >
                                     <option value="">Select your preferred style</option>
                                     <option value="visual">Visual (Diagrams, Videos)</option>
@@ -665,7 +665,7 @@ export default function ProfileSetup() {
                                                         : profileData.preferredCommunication.filter(m => m !== method);
                                                     handleInputChange(null, 'preferredCommunication', updated);
                                                 }}
-                                                className="w-4 h-4 text-yellow-400 rounded focus:ring-yellow-400"
+                                                className="w-4 h-4 text-blue-400 rounded focus:ring-blue-400"
                                             />
                                             <label className="ml-2 text-sm font-medium text-gray-700 capitalize">
                                                 {method.replace('_', ' ')}
@@ -692,7 +692,7 @@ export default function ProfileSetup() {
                                         type="url"
                                         value={url}
                                         onChange={(e) => handleInputChange('socialLinks', platform, e.target.value)}
-                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+                                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                                         placeholder={`Your ${platform} URL`}
                                     />
                                 </div>
@@ -705,7 +705,7 @@ export default function ProfileSetup() {
                     <button
                         onClick={saveProfile}
                         disabled={saving}
-                        className="bg-yellow-400 text-black px-8 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors disabled:opacity-50 flex items-center gap-2 cursor-pointer"
+                        className="bg-blue-400 text-black px-8 py-3 rounded-lg font-medium hover:bg-blue-500 transition-colors disabled:opacity-50 flex items-center gap-2 cursor-pointer"
                     >
                         {saving ? (
                             <>
