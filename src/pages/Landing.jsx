@@ -6,11 +6,15 @@ import { Search, Users, Target, Star, Zap, MapPin } from "lucide-react";
 import { FileEdit, MessageCircle, Image, CalendarCheck } from "lucide-react";
 import SearchComponent from '../components/SearchComponent';
 import { handleLandingPageLoad, scrollToSection } from '../components/navigation';
+import { useAuth } from '../hooks/useAuth';
+
 
 const Landing = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [popularSkills, setPopularSkills] = useState([]);
     const navigate = useNavigate();
+    const { user } = useAuth();
+
 
     const defaultPopularSkills = [
         'Guitar', 'Cooking', 'Yoga', 'Programming', 'Photography',
@@ -439,14 +443,28 @@ const Landing = () => {
                                                 ))}
                                             </ul>
 
-                                            <button className={`w-full py-3 px-6 rounded-lg cursor-pointer font-bold transition-all ${plan.popular
-                                                ? 'bg-linear-to-r from-blue-400 to-blue-500 text-black hover:shadow-lg'
-                                                : plan.color === 'black'
-                                                    ? 'bg-gray-900 text-white hover:bg-gray-800'
-                                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                                }`}>
-                                                {plan.cta}
-                                            </button>
+                                            <button
+  onClick={() => {
+    if (plan.name === "Community Plus") {
+      navigate('/coming-soon');
+    } else {
+      if (user) {
+        navigate('/dashboard');
+      } else {
+        navigate('/auth/login');
+      }
+    }
+  }}
+  className={`w-full py-3 px-6 rounded-lg cursor-pointer font-bold transition-all ${plan.popular
+    ? 'bg-linear-to-r from-blue-400 to-blue-500 text-black hover:shadow-lg'
+    : plan.color === 'black'
+      ? 'bg-gray-900 text-white hover:bg-gray-800'
+      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+  }`}
+>
+  {plan.cta}
+</button>
+
                                         </div>
                                     </div>
                                 ))}
