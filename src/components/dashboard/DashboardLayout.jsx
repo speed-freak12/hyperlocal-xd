@@ -5,11 +5,11 @@ import DashboardHeader from './DashboardHeader';
 
 export default function DashboardLayout() {
     return (
-        <div className="min-h-screen bg-gray-50 flex">
+        <div className="min-h-screen flex bg-gradient-to-br from-blue-200 via-blue-50 to-blue-300">
             <DashboardSidebar />
             <div className="flex-1 overflow-auto">
                 <DashboardHeader />
-                <main>
+                <main className="p-2">
                     <Outlet />
                 </main>
             </div>
