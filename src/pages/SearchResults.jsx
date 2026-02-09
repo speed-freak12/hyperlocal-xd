@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import SearchComponent from '../components/SearchComponent';
-import { MapPin, Star, Users, Filter, X, Zap } from 'lucide-react';
+import { MapPin, Star, Users, Filter, X, Zap, Search } from 'lucide-react';
 
 function SearchResults() {
     const location = useLocation();
@@ -13,10 +13,19 @@ function SearchResults() {
     const [searchQuery, setSearchQuery] = useState('');
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // Active filters
     const [filters, setFilters] = useState({
         role: 'all',
-        expertise: 'all'
+        expertise: 'all',
+        location: '',
+        minPrice: '',
+        maxPrice: ''
     });
+
+    // Temporary filters inside panel
+    const [tempFilters, setTempFilters] = useState(filters);
+
     const [showFilters, setShowFilters] = useState(false);
 
     useEffect(() => {
@@ -84,22 +93,42 @@ function SearchResults() {
         return relevance;
     };
 
+    // Apply filters to results
     const filteredUsers = users.filter(user => {
         if (filters.role !== 'all' && user.role !== filters.role) return false;
         if (filters.expertise !== 'all' && user.expertiseLevel !== filters.expertise) return false;
+
+        if (filters.location) {
+            if (!user.location?.toLowerCase().includes(filters.location.toLowerCase())) {
+                return false;
+            }
+        }
+
+        if (filters.minPrice) {
+            const price = user.pricing?.rate || 0;
+            if (price < Number(filters.minPrice)) return false;
+        }
+
+        if (filters.maxPrice) {
+            const price = user.pricing?.rate || 0;
+            if (price > Number(filters.maxPrice)) return false;
+        }
+
         return true;
     });
 
     return (
         <>
             <Header />
-            <div className="min-h-screen bg-gray-50 pt-32 pb-20">
+            <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 pt-32 pb-20">
                 <div className="container mx-auto px-6">
+
+                    {/* Search header */}
                     <div className="max-w-4xl mx-auto mb-8">
                         <div className="flex items-center gap-4 mb-6">
                             <button
                                 onClick={() => navigate('/')}
-                                className="text-gray-500 hover:text-gray-700"
+                                className="text-gray-600 hover:text-gray-900"
                             >
                                 ← Back
                             </button>
@@ -112,163 +141,152 @@ function SearchResults() {
                         />
 
                         <div className="flex items-center justify-between mb-6">
-                            <p className="text-gray-600">
-                                {loading ? 'Searching...' : `Found ${filteredUsers.length} results for "${searchQuery}"`}
+                            <p className="text-gray-700">
+                                {loading
+                                    ? 'Searching...'
+                                    : `Found ${filteredUsers.length} results for "${searchQuery}"`}
                             </p>
                             <button
                                 onClick={() => setShowFilters(!showFilters)}
-                                className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
+                                className="flex items-center gap-2 text-gray-700 hover:text-gray-900"
                             >
                                 <Filter className="w-4 h-4" />
                                 Filters
                             </button>
                         </div>
 
+                        {/* FILTER PANEL */}
                         {showFilters && (
-                            <div className="bg-white p-4 rounded-xl border border-gray-200 mb-6">
+                            <div className="bg-white p-6 rounded-xl border border-gray-200 mb-6 shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
-                                    <h3 className="font-semibold">Filters</h3>
+                                    <h3 className="font-semibold text-lg">Filters</h3>
                                     <button
                                         onClick={() => setShowFilters(false)}
                                         className="text-gray-400 hover:text-gray-600"
                                     >
-                                        <X className="w-4 h-4" />
+                                        <X className="w-5 h-5" />
                                     </button>
                                 </div>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
-                                        <select
-                                            value={filters.role}
-                                            onChange={(e) => setFilters(prev => ({ ...prev, role: e.target.value }))}
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                                        >
-                                            <option value="all">All Roles</option>
-                                            <option value="teacher">Teacher</option>
-                                            <option value="learner">Learner</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Expertise</label>
-                                        <select
-                                            value={filters.expertise}
-                                            onChange={(e) => setFilters(prev => ({ ...prev, expertise: e.target.value }))}
-                                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
-                                        >
-                                            <option value="all">All Levels</option>
-                                            <option value="beginner">Beginner</option>
-                                            <option value="intermediate">Intermediate</option>
-                                            <option value="advanced">Advanced</option>
-                                            <option value="expert">Expert</option>
-                                        </select>
-                                    </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                                    {/* Role */}
+                                    <select
+                                        value={tempFilters.role}
+                                        onChange={(e) =>
+                                            setTempFilters(prev => ({ ...prev, role: e.target.value }))
+                                        }
+                                        className="border border-gray-300 rounded-lg px-3 py-2"
+                                    >
+                                        <option value="all">All Roles</option>
+                                        <option value="teacher">Teacher</option>
+                                        <option value="learner">Learner</option>
+                                    </select>
+
+                                    {/* Expertise */}
+                                    <select
+                                        value={tempFilters.expertise}
+                                        onChange={(e) =>
+                                            setTempFilters(prev => ({ ...prev, expertise: e.target.value }))
+                                        }
+                                        className="border border-gray-300 rounded-lg px-3 py-2"
+                                    >
+                                        <option value="all">All Levels</option>
+                                        <option value="beginner">Beginner</option>
+                                        <option value="intermediate">Intermediate</option>
+                                        <option value="advanced">Advanced</option>
+                                        <option value="expert">Expert</option>
+                                    </select>
+
+                                    {/* Location */}
+                                    <input
+                                        type="text"
+                                        placeholder="Location"
+                                        value={tempFilters.location}
+                                        onChange={(e) =>
+                                            setTempFilters(prev => ({ ...prev, location: e.target.value }))
+                                        }
+                                        className="border border-gray-300 rounded-lg px-3 py-2"
+                                    />
+
+                                    {/* Min Price */}
+                                    <input
+                                        type="number"
+                                        placeholder="Min price"
+                                        value={tempFilters.minPrice}
+                                        onChange={(e) =>
+                                            setTempFilters(prev => ({ ...prev, minPrice: e.target.value }))
+                                        }
+                                        className="border border-gray-300 rounded-lg px-3 py-2"
+                                    />
+
+                                    {/* Max Price */}
+                                    <input
+                                        type="number"
+                                        placeholder="Max price"
+                                        value={tempFilters.maxPrice}
+                                        onChange={(e) =>
+                                            setTempFilters(prev => ({ ...prev, maxPrice: e.target.value }))
+                                        }
+                                        className="border border-gray-300 rounded-lg px-3 py-2"
+                                    />
+                                </div>
+
+                                {/* Buttons */}
+                                <div className="flex justify-end gap-3 mt-6">
+                                    <button
+                                        onClick={() =>
+                                            setTempFilters({
+                                                role: 'all',
+                                                expertise: 'all',
+                                                location: '',
+                                                minPrice: '',
+                                                maxPrice: ''
+                                            })
+                                        }
+                                        className="px-4 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100"
+                                    >
+                                        Clear
+                                    </button>
+
+                                    <button
+                                        onClick={() => {
+                                            setFilters(tempFilters);
+                                            setShowFilters(false);
+                                        }}
+                                        className="px-6 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
+                                    >
+                                        Apply Filters
+                                    </button>
                                 </div>
                             </div>
                         )}
                     </div>
 
-                    {loading ? (
-                        <div className="max-w-4xl mx-auto">
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {[1, 2, 3, 4, 5, 6].map(i => (
-                                    <div key={i} className="bg-white rounded-xl border border-gray-200 p-6 animate-pulse">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
-                                            <div className="space-y-2">
-                                                <div className="h-4 bg-gray-200 rounded w-24"></div>
-                                                <div className="h-3 bg-gray-200 rounded w-32"></div>
-                                            </div>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <div className="h-3 bg-gray-200 rounded w-full"></div>
-                                            <div className="h-3 bg-gray-200 rounded w-3/4"></div>
-                                        </div>
-                                    </div>
-                                ))}
+                    {/* RESULTS OR EMPTY STATE */}
+                    {!loading && filteredUsers.length === 0 && (
+                        <div className="max-w-2xl mx-auto text-center py-20">
+                            <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg p-10 border border-blue-100">
+                                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <Search className="w-10 h-10 text-blue-500" />
+                                </div>
+
+                                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                                    No skillmates found
+                                </h3>
+
+                                <p className="text-gray-600 mb-6">
+                                    No one is offering <span className="font-semibold">{searchQuery}</span> yet.
+                                    <br />
+                                    Try another skill or be the first to teach it.
+                                </p>
+
+                                <button
+                                    onClick={() => navigate('/')}
+                                    className="bg-blue-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors"
+                                >
+                                    Back to Home
+                                </button>
                             </div>
-                        </div>
-                    ) : filteredUsers.length > 0 ? (
-                        <div className="max-w-4xl mx-auto">
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {filteredUsers.map(user => (
-                                    <div
-                                        key={user.id}
-                                        onClick={() => navigate(`/profile/${user.id}`)}
-                                        className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-yellow-400 transition-all cursor-pointer group"
-                                    >
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                                                {user.name?.charAt(0).toUpperCase()}
-                                            </div>
-                                            <div>
-                                                <h3 className="font-semibold text-gray-900 group-hover:text-yellow-600 transition-colors">
-                                                    {user.name}
-                                                </h3>
-                                                <div className="flex items-center gap-1 text-sm text-gray-500">
-                                                    <MapPin className="w-3 h-3" />
-                                                    <span>{user.location || 'Location not set'}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-3">
-                                            {user.role && (
-                                                <div className="inline-flex items-center gap-1 bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs font-medium">
-                                                    <Users className="w-3 h-3" />
-                                                    {user.role}
-                                                </div>
-                                            )}
-
-                                            {user.skills?.slice(0, 3).map((skill, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="inline-flex items-center gap-1 bg-yellow-50 text-yellow-700 px-2 py-1 rounded-full text-xs font-medium mr-2"
-                                                >
-                                                    <Zap className="w-3 h-3" />
-                                                    {skill}
-                                                </div>
-                                            ))}
-
-                                            {user.bio && (
-                                                <p className="text-sm text-gray-600 line-clamp-2">
-                                                    {user.bio}
-                                                </p>
-                                            )}
-
-                                            {user.pricing?.rate && (
-                                                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                                                    <span className="text-sm font-semibold text-gray-900">
-                                                        {user.pricing.currency === 'INR' ? '₹' : '$'}{user.pricing.rate}
-                                                        <span className="text-gray-500 text-xs font-normal ml-1">
-                                                            /{user.pricing.rateType?.replace('_', ' ')}
-                                                        </span>
-                                                    </span>
-                                                    <div className="flex items-center gap-1">
-                                                        <Star className="w-3 h-3 text-yellow-400 fill-current" />
-                                                        <span className="text-xs text-gray-600">{user.rating || 'New'}</span>
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="max-w-2xl mx-auto text-center py-12">
-                            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <Search className="w-12 h-12 text-gray-400" />
-                            </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">No results found</h3>
-                            <p className="text-gray-600 mb-6">
-                                We couldn't find any matches for "{searchQuery}". Try searching for something else.
-                            </p>
-                            <button
-                                onClick={() => navigate('/')}
-                                className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-medium hover:bg-yellow-500 transition-colors"
-                            >
-                                Back to Home
-                            </button>
                         </div>
                     )}
                 </div>
@@ -277,6 +295,5 @@ function SearchResults() {
         </>
     );
 }
-
 
 export default SearchResults;

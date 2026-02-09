@@ -365,7 +365,7 @@ export default function SearchComponent({
                                 Popular Skills
                             </h3>
                             <div className="flex flex-wrap gap-2">
-                                {['Guitar', 'Cooking', 'Yoga', 'Programming', 'Photography', 'Dance', 'Language', 'Fitness'].map((skill) => (
+                                {['Guitar', 'Cooking','Coding', 'Yoga', 'Photography', 'Dance', 'Language', 'Fitness','Sports'].map((skill) => (
                                     <button
                                         key={skill}
                                         onClick={() => handleQuickSearch(skill)}

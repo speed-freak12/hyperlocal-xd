@@ -9,7 +9,7 @@ export default function DashboardLayout() {
             <DashboardSidebar />
             <div className="flex-1 overflow-auto">
                 <DashboardHeader />
-                <main className="p-2">
+                <main className="tarun p-2">
                     <Outlet />
                 </main>
             </div>
