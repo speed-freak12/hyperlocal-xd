@@ -57,12 +57,13 @@ export default function VerifyOtp() {
         displayName: userData.username
       });
 
-      // Store in Firestore
+      // Store in Firestore (with location)
       await setDoc(doc(db, 'users', user.uid), {
         uid: user.uid,
         username: userData.username,
         email: userData.email,
         role: userData.role,
+        location: userData.location || "Unknown area",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       });
