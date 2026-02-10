@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import VerifyOtp from "./pages/VerifyOtp";
 import PublicProfile from "./pages/PublicProfile";
 import SearchResults from "./pages/SearchResults";
 import ComingSoon from "./pages/ComingSoon";
@@ -22,6 +23,7 @@ export default function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/auth/login" element={<Login />} />
       <Route path="/auth/signup" element={<Signup />} />
+      <Route path="/verify-otp" element={<VerifyOtp />} />
       <Route path="/search" element={<SearchResults />} />
       <Route path="/profile/:userId" element={<PublicProfile />} />
       <Route path="/coming-soon" element={<ComingSoon />} />

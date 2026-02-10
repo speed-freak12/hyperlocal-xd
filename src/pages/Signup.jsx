@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-  sendEmailVerification
-} from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../firebase/config';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { sendOtpEmail } from '../utils/emailService';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -18,8 +12,8 @@ export default function Signup() {
     confirmPassword: '',
     role: 'learner'
   });
+
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -35,8 +29,8 @@ export default function Signup() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    setSuccess('');
 
+    // Basic validation
     if (
       !formData.username ||
       !formData.email ||
@@ -62,64 +56,27 @@ export default function Signup() {
     }
 
     try {
-      // Create user
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
+      // Generate 6-digit OTP
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+      // Send OTP email
+      await sendOtpEmail(formData.email, otp);
+
+      // Store signup data temporarily
+      localStorage.setItem(
+        'pending_signup',
+        JSON.stringify({
+          ...formData,
+          otp
+        })
       );
 
-      const user = userCredential.user;
+      // Redirect to OTP verification page
+      navigate('/verify-otp');
 
-      // Update display name
-      await updateProfile(user, {
-        displayName: formData.username
-      });
-
-      // Store in Firestore
-      await setDoc(doc(db, 'users', user.uid), {
-        uid: user.uid,
-        username: formData.username,
-        email: formData.email,
-        role: formData.role,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      });
-
-      // Send verification email
-      await sendEmailVerification(user);
-
-      setSuccess(
-        'Account created! A verification email has been sent. Please verify your email before logging in.'
-      );
-
-      // Redirect to login after 3 seconds
-      setTimeout(() => {
-        navigate('/auth/login');
-      }, 3000);
-
-    } catch (error) {
-      console.error('Signup error:', error);
-      let errorMessage = 'Failed to create account';
-
-      switch (error.code) {
-        case 'auth/email-already-in-use':
-          errorMessage = 'An account with this email already exists';
-          break;
-        case 'auth/invalid-email':
-          errorMessage = 'Invalid email address';
-          break;
-        case 'auth/operation-not-allowed':
-          errorMessage = 'Operation not allowed';
-          break;
-        case 'auth/weak-password':
-          errorMessage = 'Password is too weak';
-          break;
-        default:
-          errorMessage = error.message;
-      }
-
-      setError(errorMessage);
+    } catch (err) {
+      console.error('OTP send error:', err);
+      setError('Failed to send verification email. Try again.');
     } finally {
       setLoading(false);
     }
@@ -141,12 +98,6 @@ export default function Signup() {
               {error && (
                 <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
                   {error}
-                </div>
-              )}
-
-              {success && (
-                <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg text-sm">
-                  {success}
                 </div>
               )}
 
@@ -268,7 +219,7 @@ export default function Signup() {
                 disabled={loading}
                 className="w-full bg-linear-to-r from-blue-400 to-blue-500 text-black font-bold py-3 px-4 rounded-lg hover:scale-105 transition-transform shadow-lg disabled:opacity-50"
               >
-                {loading ? 'Creating Account...' : 'Sign Up'}
+                {loading ? 'Sending OTP...' : 'Sign Up'}
               </button>
             </form>
 
