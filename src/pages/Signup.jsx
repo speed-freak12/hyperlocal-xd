@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { sendOtpEmail } from '../utils/emailService';
-import { getUserArea } from "../utils/locationService";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -57,18 +56,10 @@ export default function Signup() {
     }
 
     try {
-      // Get user area
-      let userArea = "Unknown area";
-      try {
-        userArea = await getUserArea();
-      } catch (err) {
-        console.warn("Location not granted:", err);
-      }
-
       // Generate 6-digit OTP
       const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-      // Send OTP email
+      // Send OTP email (fast, no location delay)
       await sendOtpEmail(formData.email, otp);
 
       // Store signup data temporarily
@@ -76,7 +67,6 @@ export default function Signup() {
         'pending_signup',
         JSON.stringify({
           ...formData,
-          location: userArea, // store location
           otp
         })
       );

@@ -8,6 +8,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { getUserLocation, getAreaFromCoordinates } from '../utils/locationService';
 
 export default function VerifyOtp() {
   const [otpInput, setOtpInput] = useState('');
@@ -43,7 +44,7 @@ export default function VerifyOtp() {
     }
 
     try {
-      // Create Firebase user
+      // Step 1: Create Firebase user
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         userData.email,
@@ -52,18 +53,35 @@ export default function VerifyOtp() {
 
       const user = userCredential.user;
 
-      // Update display name
+      // Step 2: Update display name
       await updateProfile(user, {
         displayName: userData.username
       });
 
-      // Store in Firestore (with location)
+      // Step 3: Get user location AFTER account creation
+      let latitude = null;
+      let longitude = null;
+      let area = "Unknown area";
+
+      try {
+        const coords = await getUserLocation();
+        latitude = coords.latitude;
+        longitude = coords.longitude;
+
+        area = await getAreaFromCoordinates(latitude, longitude);
+      } catch (locError) {
+        console.warn("Location not granted:", locError);
+      }
+
+      // Step 4: Store in Firestore
       await setDoc(doc(db, 'users', user.uid), {
         uid: user.uid,
         username: userData.username,
         email: userData.email,
         role: userData.role,
-        location: userData.location || "Unknown area",
+        location: area,
+        latitude,
+        longitude,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
       });
